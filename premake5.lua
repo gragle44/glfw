@@ -15,12 +15,21 @@ project "GLFW"
         "src/input.c",
         "src/monitor.c",
         "src/vulkan.c",
-        "src/window.c"
+        "src/window.c",
+        "src/platform.h",
+        "src/platform.c",
+        "src/null_init.c",
+        "src/null_platform.h",
+        "src/null_joystick.h",
+        "src/null_init.c",
+        "src/null_monitor.c",
+        "src/null_window.c",
+        "src/null_joystick.c"
     }
     
 	filter "system:windows"
         buildoptions { "-std=c11", "-lgdi32" }
-        systemversion "10.0.17134.0"
+        systemversion "latest"
         staticruntime "On"
         
         files
@@ -31,6 +40,7 @@ project "GLFW"
             "src/win32_time.c",
             "src/win32_thread.c",
             "src/win32_window.c",
+            "src/win32_module.c",
             "src/wgl_context.c",
             "src/egl_context.c",
             "src/osmesa_context.c"
