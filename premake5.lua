@@ -12,6 +12,7 @@ project "GLFW"
         "include/GLFW/glfw3native.h",
         "src/glfw_config.h",
         "src/context.c",
+        "src/internal.h",
         "src/init.c",
         "src/input.c",
         "src/monitor.c",
@@ -56,9 +57,11 @@ project "GLFW"
 
         files
         {
+            "src/x11_platform.h",
             "src/x11_window.c",
             "src/x11_monitor.c",
             "src/x11_init.c",
+            "src/wl_platform.h",
             "src/wl_window.c",
             "src/wl_monitor.c",
             "src/wl_init.c",
@@ -67,6 +70,8 @@ project "GLFW"
             "src/posix_thread.c",
             "src/posix_module.c",
             "src/xkb_unicode.c",
+            "src/xkb_unicode.h",
+            "src/linux_joystick.h",
             "src/linux_joystick.c",
             "src/wgl_context.c",
             "src/egl_context.c",
