@@ -76,12 +76,53 @@ project "GLFW"
             "src/wgl_context.c",
             "src/egl_context.c",
             "src/glx_context.c",
-            "src/osmesa_context.c"
+            "src/osmesa_context.c",
+            "src/*-protocol.c",
+            "src/*-protocol.h"
+        }
+
+        prebuildcommands {
+            "wayland-scanner client-header /usr/share/wayland/wayland.xml %{prj.location}/src/wayland-client-protocol.h",
+            "wayland-scanner private-code /usr/share/wayland/wayland.xml %{prj.location}/src/wayland-client-protocol-code.h",
+
+            -- xdg-shell
+            "wayland-scanner client-header /usr/share/wayland-protocols/stable/xdg-shell/xdg-shell.xml %{prj.location}/src/xdg-shell-client-protocol.h",
+            "wayland-scanner private-code /usr/share/wayland-protocols/stable/xdg-shell/xdg-shell.xml %{prj.location}/src/xdg-shell-client-protocol-code.h",
+
+            -- xdg-decoration
+            "wayland-scanner client-header /usr/share/wayland-protocols/unstable/xdg-decoration/xdg-decoration-unstable-v1.xml %{prj.location}/src/xdg-decoration-unstable-v1-client-protocol.h",
+            "wayland-scanner private-code /usr/share/wayland-protocols/unstable/xdg-decoration/xdg-decoration-unstable-v1.xml %{prj.location}/src/xdg-decoration-unstable-v1-client-protocol-code.h",
+
+            -- viewporter
+            "wayland-scanner client-header /usr/share/wayland-protocols/stable/viewporter/viewporter.xml %{prj.location}/src/viewporter-client-protocol.h",
+            "wayland-scanner private-code /usr/share/wayland-protocols/stable/viewporter/viewporter.xml %{prj.location}/src/viewporter-client-protocol-code.h",
+
+            -- relative-pointer
+            "wayland-scanner client-header /usr/share/wayland-protocols/unstable/relative-pointer/relative-pointer-unstable-v1.xml %{prj.location}/src/relative-pointer-unstable-v1-client-protocol.h",
+            "wayland-scanner private-code /usr/share/wayland-protocols/unstable/relative-pointer/relative-pointer-unstable-v1.xml %{prj.location}/src/relative-pointer-unstable-v1-client-protocol-code.h",
+
+            -- pointer-constraints
+            "wayland-scanner client-header /usr/share/wayland-protocols/unstable/pointer-constraints/pointer-constraints-unstable-v1.xml %{prj.location}/src/pointer-constraints-unstable-v1-client-protocol.h",
+            "wayland-scanner private-code /usr/share/wayland-protocols/unstable/pointer-constraints/pointer-constraints-unstable-v1.xml %{prj.location}/src/pointer-constraints-unstable-v1-client-protocol-code.h",
+
+            -- fractional-scale
+            "wayland-scanner client-header /usr/share/wayland-protocols/staging/fractional-scale/fractional-scale-v1.xml %{prj.location}/src/fractional-scale-v1-client-protocol.h",
+            "wayland-scanner private-code /usr/share/wayland-protocols/staging/fractional-scale/fractional-scale-v1.xml %{prj.location}/src/fractional-scale-v1-client-protocol-code.h",
+
+            -- xdg-activation
+            "wayland-scanner client-header /usr/share/wayland-protocols/staging/xdg-activation/xdg-activation-v1.xml %{prj.location}/src/xdg-activation-v1-client-protocol.h",
+            "wayland-scanner private-code /usr/share/wayland-protocols/staging/xdg-activation/xdg-activation-v1.xml %{prj.location}/src/xdg-activation-v1-client-protocol-code.h",
+
+
+            -- idle-inhibit
+            "wayland-scanner client-header /usr/share/wayland-protocols/unstable/idle-inhibit/idle-inhibit-unstable-v1.xml %{prj.location}/src/idle-inhibit-unstable-v1-client-protocol.h",
+            "wayland-scanner private-code /usr/share/wayland-protocols/unstable/idle-inhibit/idle-inhibit-unstable-v1.xml %{prj.location}/src/idle-inhibit-unstable-v1-client-protocol-code.h",
         }
 
         defines
         {
             "_GLFW_X11",
+            "_GLFW_WAYLAND"
         }
 
     filter "configurations:Debug"
